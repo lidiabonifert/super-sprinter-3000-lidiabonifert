@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>
+            {% if _id %}
+            Super Sprinter 3000 - Edit story
+            {% else %}
+            Super Sprinter 3000 - Add story
+            {% endif %}
+        </title>
+    </head>
+    <body>
+        <h2>
+            {% if _id %}
+            User Story Manager - Edit story
+            {% else %}
+            User Story Manager - Add story
+            {% endif %}
+        </h2>
+        {% if _id %}
+        <form action='update-story/{{story[0]}}' method='POST'>
+        {% else %}
+        <form action='save-story' method='POST'>
+        {% endif%}
+            Story title<br>
+            <input type='text' name='story_title'
+            {% if story %}
+            value={{story[1]}}
+            {%endif%}><br>
+            User story<br>
+            <input type='text' name='user_story'
+            {% if story %}
+            value={{story[2]}}
+            {%endif%}><br>
+            Acceptance criteria<br>
+            <input type='text' name='criteria'
+            {% if story %}
+            value={{story[3]}}
+            {%endif%}><br>
+            Business value<br>
+            <input type='number' name='value' step='100' min='100' max='1500'
+            {% if story %}
+            value={{story[4]}}
+            {% else %}
+            value='100'
+            {%endif%}>
+            <br>
+            Estimation (h)<br>
+            <input type='number' name='estimation' step='0.5' min='0.5' max='40'
+            {% if story %}
+            value={{story[5]}}
+            {% else %}
+            value='0.5'>
+            {%endif%}><br>
+            Status<br>
+            <select name='status'
+            {% if story %}
+            value={{story[6]}}
+            {%endif%}>
+                <option value='Planning'>Planning</option>
+                <option value='ToDo'>ToDo</option>
+                <option value='In Progress'>In Progress</option>
+                <option value='Review'>Review</option>
+                <option value='Done'>Done</option>
+            </select> <br>
+            <br>
+            <input type='submit' value='Submit'>
+        </form>
+    </body>
+</html>
+
